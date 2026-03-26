@@ -16,13 +16,17 @@ The output is not "AI-generated advice." It's a **structured decision brief** wi
 
 ### 1. Install
 
-**Option A — Claude Code Plugin (recommended):**
+**Option A — Local Claude Code plugin (recommended):**
 
 ```bash
-claude plugin install PentaTea/product-advisory-board
+git clone https://github.com/PentaTea/product-advisory-board.git
+cd product-advisory-board
+claude --plugin-dir .
 ```
 
-This installs both the skill AND all 9 agent definitions in one step. Claude Code auto-discovers the plugin's default `skills/` and `agents/` directories, so the skill and subagents become available together.
+This loads PAB directly from the cloned directory as a session-local Claude Code plugin. Claude Code auto-discovers the plugin's default `skills/` and `agents/` directories, so the skill and subagents become available together.
+
+> Marketplace install is **not** available yet. A public GitHub repo alone cannot be installed with `claude plugin install` until the plugin is published in a configured marketplace.
 
 **Option B — skills.sh + manual agents:**
 
@@ -43,11 +47,11 @@ cd /path/to/your-project
 /tmp/pab/install.sh --global  # or user-level (~/.claude/)
 ```
 
-**Cursor / Codex:** Cursor 2.4+ reads `.claude/agents/` natively — Options A-C all work. Codex uses TOML format for agent definitions (conversion needed).
+**Cursor / Codex:** Option A is Claude Code only. Cursor 2.4+ reads `.claude/agents/` natively, so use Options B/C there. Codex uses TOML format for agent definitions (conversion needed).
 
 ### 2. Trigger it in Claude Code
 
-If you installed PAB as a Claude Code plugin, use the namespaced skill:
+If you launched PAB with `claude --plugin-dir`, use the namespaced skill:
 
 ```
 > /product-advisory-board:product-advisory-board Should we pivot from B2B to B2C for our AI writing assistant?
@@ -66,9 +70,9 @@ Or use natural language:
 > Let's get the advisory board's take on our pricing strategy
 ```
 
-After installation, open `/agents` and confirm the PAB agents are visible:
+After installation or launch, open `/agents` and confirm the PAB agents are visible:
 
-- Plugin install: `product-advisory-board:pab-scout`, `product-advisory-board:pab-red-team`, and the other PAB agents
+- Local plugin mode (`claude --plugin-dir`): `product-advisory-board:pab-scout`, `product-advisory-board:pab-red-team`, and the other PAB agents
 - Standalone `.claude/` install: `pab-scout`, `pab-red-team`, and the other `pab-*` agents
 
 ### 3. Read the decision brief
