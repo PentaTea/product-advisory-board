@@ -1,0 +1,19 @@
+{
+  "name": "product-advisory-board",
+  "version": "1.0.0",
+  "description": "Multi-agent product advisory board. Physically isolated AI advisors debate your product decisions through a 5-phase protocol: independent insights → conflict identification → targeted debate → decision brief. Includes dynamic external expert matching from 144+ roles.",
+  "author": {
+    "name": "PentaTea",
+    "url": "https://github.com/PentaTea"
+  },
+  "repository": "https://github.com/PentaTea/product-advisory-board",
+  "license": "AGPL-3.0",
+  "keywords": [
+    "product-management",
+    "multi-agent",
+    "advisory-board",
+    "decision-making",
+    "red-team",
+    "debate"
+  ]
+}
